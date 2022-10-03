@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 
 function App() {
   const userName = 'world'
+  const [modal, setModal] = useState(false)
 
   const [messageList, setMessageList] = useState([
     { text: '', author: '' },
@@ -39,6 +40,19 @@ function App() {
           messageList.map((e, i) => <Message text={e.text} author={e.author} key={i} />)
         }
       </div>
+        <DivWithChild>
+          {/*<Button variant="contained" color="primary">children</Button>*/}
+          <p>children</p>
+        </DivWithChild>
+        <button onClick={() =>{setModal(true)}}>Открыть модальное окно</button>
+        {modal === true && 
+          <Modal setModal = {setModal}>
+            <div>
+              <input type={'text'}/>
+              <button>Клик</button>
+            </div>
+          </Modal>
+        }
     </div>
   );
 }
@@ -85,11 +99,31 @@ const Form = ({ data, setData, setMessage }) => {
       } />
       <Button variant="contained" color="primary">Отправить</Button>
     </form>
-
   )
 }
 
 export default App;
+
+const DivWithChild = ({children}) =>{
+  return(
+    <div>{children}</div>
+    )
+}
+
+const Modal = ({children, setModal}) => {
+  const styles = {
+   width: '50%',
+   height: '50%',
+   background: '#fff'
+  }
+  return (
+    <div style = {styles} className = "modalContainer" onClick = {(e) =>{setModal(false)}}>
+      <div className="internalModalContainer" onClick = {(e) =>{e.stopPropagation()}}>
+        {children}
+      </div>
+    </div>
+    )
+}
 
 /*function App() {
 
