@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.modalContainer {
+  width: 60%;
+  height: 60%;
+  color: blue;
+}
+
+.internalModalContainer {
+    width: 50%;
+    height: 50%;
+    color: red;
+  }
